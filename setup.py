@@ -20,7 +20,7 @@ setuptools.setup(
     zip_safe=False,
     platforms='any',
     install_requires=['pip'],
-    tests_require=['py'],
+    tests_require=['pytest', 'tox'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: MIT',

@@ -1,0 +1,11 @@
+Setting up your environment
+---------------------------
+
+The easiest way to start working with this code is to set up a virtual
+environment and run ``env/bin/python setup.py test``.  That will install
+the necessary testing tools and run the tests.  Unfortunately it installs
+them as eggs at the top-level... not perfect.  If this bothers you as
+much as it bothers me, you can create the virtual environment and use
+**pip** to install the requirements from *dev-requirements.txt* into the
+virtual environment.
+
