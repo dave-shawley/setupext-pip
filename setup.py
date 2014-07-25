@@ -1,6 +1,8 @@
 import codecs
 import setuptools
 
+from setupext import pip
+
 
 def _read_file(filename):
     with codecs.open(filename, 'rb', encoding='utf-8') as file_obj:
@@ -9,7 +11,7 @@ def _read_file(filename):
 
 setuptools.setup(
     name='setupext-pip',
-    version='0.0.0',
+    version=pip.__version__,
     author='Dave Shawley',
     author_email='daveshawley@gmail.com',
     url='http://github.com/dave-shawley/setupext-pip',
