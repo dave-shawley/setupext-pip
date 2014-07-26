@@ -1,2 +1,8 @@
+include HACKING
 include LICENSE
-graft tests
+include *requirements.txt
+graft doc
+
+global-exclude __pycache__
+global-exclude *.pyc
+global-exclude *.swp
