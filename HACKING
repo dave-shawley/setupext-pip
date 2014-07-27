@@ -1,0 +1,12 @@
+Setting up your environment
+---------------------------
+
+The easiest way to start working with this code is to set up a virtual
+environment and run ``env/bin/python setup.py test``.  That will install
+the necessary testing tools and run the tests.  Unfortunately it installs
+them as eggs at the top-level which doesn't always seem to work.  If it
+blows up with a strange looking error, manually install ``tox`` into the
+environment using ``pip`` and it should work as expected then.
+
+You can also just install the requirements from *dev-requirements.txt*
+to get all of the expected tools available in the virtual environment.

@@ -1,6 +1,8 @@
 Pip Setuptools Extension
 ========================
 
+|Version| |Downloads| |Status| |License|
+
 A `setuptools`_ extension that installs requirements based on `pip`_
 requirements files.
 
@@ -28,8 +30,32 @@ can read a pip-formatted requirements file and generate a list that is
 usable as the setup ``setup_requires``, ``install_requires``, or
 ``tests_require`` keywords.
 
+Ok... Where?
+------------
++---------------+-------------------------------------------------+
+| Source        | https://github.com/dave-shawley/setupext-pip    |
++---------------+-------------------------------------------------+
+| Status        | https://travis-ci.org/dave-shawley/setupext-pip |
++---------------+-------------------------------------------------+
+| Download      | https://pypi.python.org/pypi/setupext-pip       |
++---------------+-------------------------------------------------+
+| Documentation | http://setupext-pip.readthedocs.org/en/latest/  |
++---------------+-------------------------------------------------+
+| Issues        | https://github.com/dave-shawley/setupext-pip    |
++---------------+-------------------------------------------------+
+
+
 .. _setuptools: https://pythonhosted.org/setuptools/
 .. _pip: https://pip.pypa.io/en/latest/
-.. _pip-formatted requirements file: 
+.. _pip-formatted requirements file:
    https://pip.pypa.io/en/latest/reference/pip_install.html
    #requirements-file-format
+.. |Version| image:: https://badge.fury.io/py/setupext-pip.svg
+   :target: https://badge.fury.io/
+.. |Downloads| image:: https://pypip.in/d/setupext-pip/badge.svg?
+   :target: https://pypi.python.org/pypi/setupext-pip
+.. |Status| image:: https://travis-ci.org/dave-shawley/setupext-pip.svg
+   :target: https://travis-ci.org/dave-shawley/setupext-pip
+.. |License| image:: https://pypip.in/license/setupext-pip/badge.svg?
+   :target: https://setupext-pip.readthedocs.org/
+

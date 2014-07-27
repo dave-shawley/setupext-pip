@@ -1,0 +1,7 @@
+flake8==2.2.2
+pyflakes==0.8.1
+pytest==2.6.0
+pytest-cov==1.7.0
+sphinx==1.2.2
+sphinx-rtd-theme>=0.1,<1.0
+tox==1.7.2
