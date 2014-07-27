@@ -45,9 +45,11 @@ setuptools.setup(
     tests_require=['tox'],
     classifiers=[
         'Intended Audience :: Developers',
-        'License :: MIT',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Framework :: Setuptools Plugin',
+        'Development Status :: 4 - Beta',
     ],
     cmdclass={'test': Tox},
     entry_points={
