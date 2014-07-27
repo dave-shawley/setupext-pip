@@ -1,5 +1,6 @@
 include HACKING
 include LICENSE
+include .coveragerc
 include *requirements.txt
 graft doc
 

@@ -41,8 +41,8 @@ setuptools.setup(
     namespace_packages=['setupext'],
     zip_safe=False,
     platforms='any',
-    install_requires=['pip'],
-    tests_require=['pytest', 'tox'],
+    install_requires=['pip>=1.5'],
+    tests_require=['pytest', 'pytest-cov', 'tox'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: MIT',
