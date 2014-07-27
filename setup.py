@@ -1,5 +1,7 @@
+from setuptools.command.test import test as TestCommand
 import codecs
 import setuptools
+import sys
 
 from setupext import pip
 
@@ -7,6 +9,24 @@ from setupext import pip
 def _read_file(filename):
     with codecs.open(filename, 'rb', encoding='utf-8') as file_obj:
         return '\n' + file_obj.read()
+
+
+class Tox(TestCommand):
+    user_options = [('tox-args=', 'a', 'Arguments to pass to tox')]
+
+    def initialize_options(self):
+        TestCommand.initialize_options(self)
+        self.tox_args = None
+
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        import shlex
+        import tox
+        sys.exit(tox.cmdline(args=shlex.split(self.tox_args)))
 
 
 setuptools.setup(
@@ -29,6 +49,7 @@ setuptools.setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
+    cmdclass={'test': Tox},
     entry_points={
         'distutils.commands': [
             'requirements = setupext.pip:PipInstall',
