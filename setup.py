@@ -42,7 +42,7 @@ setuptools.setup(
     zip_safe=False,
     platforms='any',
     install_requires=['pip>=1.5'],
-    tests_require=['pytest', 'pytest-cov', 'tox'],
+    tests_require=['tox'],
     classifiers=[
         'Intended Audience :: Developers',
         'License :: MIT',
