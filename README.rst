@@ -28,6 +28,19 @@ can read a pip-formatted requirements file and generate a list that is
 usable as the setup ``setup_requires``, ``install_requires``, or
 ``tests_require`` keywords.
 
+Ok... Where?
+------------
++---------------+----------------------------------------------+
+| Source        | https://github.com/dave-shawley/setupext-pip |
++---------------+----------------------------------------------+
+| Download      | *eventually a link to PyPi*                  |
++---------------+----------------------------------------------+
+| Documentation | *eventually on Read the Docs*                |
++---------------+----------------------------------------------+
+| Issues        | https://github.com/dave-shawley/setupext-pip |
++---------------+----------------------------------------------+
+
+
 .. _setuptools: https://pythonhosted.org/setuptools/
 .. _pip: https://pip.pypa.io/en/latest/
 .. _pip-formatted requirements file: 
