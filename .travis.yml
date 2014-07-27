@@ -1,18 +1,21 @@
 language: python
-
 python:
-    - "2.7"
-    - "3.3"
-    - "3.4"
-
+- '2.7'
+- '3.3'
+- '3.4'
 install:
-    - pip install tox
-
+- pip install tox
 script:
-    - tox
-
+- tox
 branches:
-    only:
-        - master
-        - develop
-
+  only:
+  - master
+  - develop
+deploy:
+  provider: pypi
+  user: daveshawley
+  password:
+    secure: RvdPEHX8bh1tPqPN6fmFdpgPu8do/QiDCqWbitgW7QPJQUaVS7SSTBVqsx8XWdd2QdKofpDQNWUPGgPDrbrByq/QpaYMsgrce0ZAkbD7wAK8cZsQADQ0ld6CFl9HfstUxrKhC06YdyaB7rLh/j4svW4mplZ5M2Lco5d38xxL11A=
+  on:
+    tags: true
+    repo: dave-shawley/setupext-pip
