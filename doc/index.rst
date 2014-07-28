@@ -4,4 +4,5 @@
    :hidden:
 
    requirements-command
+   requirements-files
    changelog
