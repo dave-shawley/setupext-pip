@@ -1,3 +1,6 @@
+import logging
+
+import pkg_resources
 import setuptools
 
 try:
@@ -52,3 +55,47 @@ class PipInstall(setuptools.Command):
 
 
 PipInstall.description = PipInstall.__doc__.splitlines()[0]
+
+
+def read_requirements_from_file(file_name):
+    """Read requirements from a pip-formatted requirements file.
+
+    :param str file_name: the name of the file to read from
+    :return: a ``list`` of requirements as strings
+
+    This function reads the specified file, processes it as the
+    :command:`pip` utility would, and returns the list of
+    dependency specifiers.  Each line of the requirements file
+    is parsed using the functionality provided by `pkg_resources`_
+    so even the hairiest dependency specifiers will be parsed
+    correctly.  However, all command line parameter overrides (e.g.,
+    ``--index-file=...``) are ignored.
+
+    .. _pkg_resources:
+       https://pythonhosted.org/setuptools/pkg_resources.html
+       #requirements-parsing
+
+    """
+    logger = logging.getLogger('read_requirements_from_file')
+    requirements = []
+    with open(file_name, 'rb') as req_file:
+        for line_number, buf in enumerate(req_file):
+            line = buf.decode('utf-8').strip()
+            if line.find('#') >= 0:
+                line = line[0:line.find('#')].strip()
+            if not line:
+                continue
+
+            if line.startswith('-'):
+                continue
+
+            try:
+                req = pkg_resources.Requirement.parse(line)
+                requirements.append(str(req))
+            except ValueError:
+                logger.warning(
+                    'failed to parse line %s in %s',
+                    line_number, file_name,
+                    exc_info=True,
+                )
+    return requirements

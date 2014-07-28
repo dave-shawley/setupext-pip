@@ -1,7 +1,11 @@
 Changelog
 ---------
 
-* 1.0.1
+* Next Release
+
+  - Added ``read_requirements_from_file`` function.
+
+* 1.0.1 (27-Jul-2014)
 
   - Worked around a problem with py.test output capturing and Python 3.x.
     It looks like they are patching ``sys.stdout`` and friends with something
@@ -13,4 +17,4 @@ Changelog
 
 * 1.0.0 (27-Jul-2014)
 
-  Initial revision that supported the ``requirements`` command.
+  - Initial revision that supported the ``requirements`` command.
