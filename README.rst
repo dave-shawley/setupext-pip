@@ -20,7 +20,8 @@ are used for actually hacking on the code base.  Many projects include a
 purposes.  It contains the dependencies that you need to have installed to
 work on the project instead of use it.  This extension aims to automate
 that pattern and make it easier to set up a development environment by
-providing a new setup command named **requirements**.
+providing a new setup command named
+:ref:`requirements <requirements-command>`.
 
 Having a separate *requirements.txt* is a good pattern but it is not
 without its flaws.  Having dependencies identified in two places is an
@@ -28,7 +29,10 @@ outright violation of the *Don't Repeat Yourself* principle.  That is
 something else that we can solve pretty easily with a function that you
 can read a pip-formatted requirements file and generate a list that is
 usable as the setup ``setup_requires``, ``install_requires``, or
-``tests_require`` keywords.
+``tests_require`` keywords.  This is where the
+:func:`~setupext.pip.read_requirements_from_file` function comes in.
+You can use this function to populate the ``setup_requires``,
+``tests_require``, and ``extras_require`` keywords.
 
 Ok... Where?
 ------------
