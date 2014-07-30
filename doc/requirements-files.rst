@@ -1,3 +1,13 @@
+.. warning::
+   **Import Usage Note**
+
+   Now there is a very important problem with taking this approach --
+   **setupext has to be installed BEFORE setup.py runs**.  This means
+   that you cannot depend on ``setup_requires`` to install the extension.
+   This is very unfortunate and made me consider not releasing this helper
+   at all.
+
+
 Using Requirement Files
 -----------------------
 ``setuptools.setup`` takes three keyword parameters that control which
@@ -56,6 +66,26 @@ to organize simple or complex dependencies in a DRY manner.
        setup_requires=pip.read_requirements_from_file('requirements.txt'),
        tests_require=pip.read_requirements_from_file('dev-requirements.txt'),
    )
+
+Now back to the ominous warning above.  If you can't guarantee that the
+extension is installed into the environment that your package is installed
+into, then you can roll your own implementation of reading the requirements
+file.  I've used the following snippet to work through this problem with,
+admittedly, simple requirements files.
+
+.. code-block:: python
+
+   try:
+       from setupext.pip import read_requirements_from_file
+   except ImportError:
+       def read_requirements_from_file(req_name):
+           with open(req_name, 'r') as req_file:
+               return [
+                   line[0:line.find('#')] if '#' in line else line.strip()
+                   for line in req_file
+               ]
+
+It's no where near perfect, but it does work in most cases.
 
 
 .. autofunction:: setupext.pip.read_requirements_from_file
