@@ -30,6 +30,9 @@ the requirements described below.
 
 """
 from distutils import dist
+import atexit
+import os
+import tempfile
 try:
     from unittest import mock
 except ImportError:
@@ -40,6 +43,10 @@ import setuptools
 
 from setupext import pip
 
+
+########################################################################
+# setupext.pip.PipInstall
+########################################################################
 
 def should_define_command_name():
     assert pip.PipInstall.command_name is not None
@@ -111,3 +118,30 @@ def should_default_to_installing_package_requirements(install_module=None):
 
     pip_command.cmd_opts.parser.parse_args.assert_called_with(
         ['docopt==0.6.1', 'requests==2.3.0'])
+
+
+########################################################################
+# setupext.pip.read_requirements_from_file
+########################################################################
+
+def should_read_complex_requirements_file():
+    fd, name = tempfile.mkstemp()
+    atexit.register(os.unlink, name)
+    os.write(fd, '\n'.join([
+        '# this comment is ignored',
+        '  --always-unzip  # ignored',
+        '-Z',
+        'Unsafe_Name>1',
+        '-i ignored/index/url',
+        '--index-url=ignored/url',
+        '-f ignored-links-path',
+        '--find-links=ignored',
+        'requests==1.2.3',
+        'illegal name ignored',
+    ]).encode('utf-8'))
+
+    requirements = pip.read_requirements_from_file(name)
+
+    assert requirements[0] == 'Unsafe-Name>1', 'Unsafe name not adjusted'
+    assert requirements[1] == 'requests==1.2.3', 'Simple dependency broken'
+    assert len(requirements) == 2
