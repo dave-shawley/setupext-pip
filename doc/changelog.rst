@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+* 1.0.3 (30-Jul-2014)
+  
+  - Fix ``setup.py test``.  It was hanging forever unless you passed it
+    additional parameters.
+
 * 1.0.2 (30-Jul-2014)
 
   - Added ``read_requirements_from_file`` function.
