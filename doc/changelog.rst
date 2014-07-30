@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-* Next Release
+* 1.0.2 (30-Jul-2014)
 
   - Added ``read_requirements_from_file`` function.
 
