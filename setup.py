@@ -26,7 +26,7 @@ class Tox(TestCommand):
     def run_tests(self):
         import shlex
         import tox
-        sys.exit(tox.cmdline(args=shlex.split(self.tox_args)))
+        sys.exit(tox.cmdline(args=shlex.split(self.tox_args or '')))
 
 
 setuptools.setup(
