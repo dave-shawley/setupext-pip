@@ -4,18 +4,17 @@ python:
 - '3.3'
 - '3.4'
 install:
-- pip install tox
+- pip install -r dev-requirements.txt
 script:
-- tox
+- py.test
 branches:
   only:
   - master
-  - develop
 deploy:
   provider: pypi
   user: daveshawley
   password:
     secure: RvdPEHX8bh1tPqPN6fmFdpgPu8do/QiDCqWbitgW7QPJQUaVS7SSTBVqsx8XWdd2QdKofpDQNWUPGgPDrbrByq/QpaYMsgrce0ZAkbD7wAK8cZsQADQ0ld6CFl9HfstUxrKhC06YdyaB7rLh/j4svW4mplZ5M2Lco5d38xxL11A=
+  distributions: "sdist bdist_wheel"
   on:
-    branch: master
-    repo: dave-shawley/setupext-pip
+    tags: true
