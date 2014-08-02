@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-* Next Release
+* 1.0.4 (02-Aug-2014)
 
   - Add ``from future import absolute_import`` to make the extension
     safe on older Python versions.
