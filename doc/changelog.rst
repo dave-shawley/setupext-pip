@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+* Next Release
+
+  - Add ``from future import absolute_import`` to make the extension
+    safe on older Python versions.
+
 * 1.0.3 (30-Jul-2014)
   
   - Fix ``setup.py test``.  It was hanging forever unless you passed it
