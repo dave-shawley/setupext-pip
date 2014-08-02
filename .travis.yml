@@ -7,9 +7,6 @@ install:
 - pip install pytest-cov
 script:
 - py.test
-branches:
-  only:
-  - master
 deploy:
   provider: pypi
   user: daveshawley
