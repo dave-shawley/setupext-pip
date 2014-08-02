@@ -29,7 +29,7 @@ the requirements described below.
     controlled by the command's various option values
 
 """
-from distutils import dist
+from distutils import dist, errors
 import atexit
 import os
 import tempfile
@@ -117,6 +117,19 @@ def should_default_to_installing_package_requirements(install_module):
 
     pip_command.cmd_opts.parser.parse_args.assert_called_with(
         ['docopt==0.6.1', 'requests==2.3.0'])
+
+
+@mock.patch.object(pip, 'install')
+def should_raise_setup_error_when_pip_import_fails(_):
+    pip.install = None
+
+    command = pip.PipInstall(dist.Distribution())
+    try:
+        command.run()
+    except Exception as exc:
+        assert isinstance(exc, errors.DistutilsSetupError)
+    else:
+        raise AssertionError('should have raised DistutilsSetupError')
 
 
 ########################################################################

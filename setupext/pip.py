@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 import logging
 
+from distutils import errors
 import pkg_resources
 import setuptools
 
@@ -51,6 +52,10 @@ class PipInstall(setuptools.Command):
             self._pip_args.append('--pre')
 
     def run(self):
+        if install is None:
+            raise errors.DistutilsSetupError(
+                'could not find pip.install module')
+
         cmd = install.InstallCommand()
         args = cmd.cmd_opts.parser.parse_args(self._pip_args)
         cmd.run(*args)
