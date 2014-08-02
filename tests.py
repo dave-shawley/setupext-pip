@@ -38,7 +38,6 @@ try:
 except ImportError:
     import mock
 
-from pip.commands import install
 import setuptools
 
 from setupext import pip
@@ -69,8 +68,8 @@ def should_define_default_for_each_option():
 
 
 @mock.patch('setupext.pip.install')
-def should_implement_setuptools_command_protocol(install_module=None):
-    pip_command = install.InstallCommand()
+def should_implement_setuptools_command_protocol(install_module):
+    pip_command = install_module.InstallCommand()
     pip_command.run = mock.Mock()
     pip_command.cmd_opts = mock.MagicMock()
     install_module.InstallCommand.return_value = pip_command
@@ -99,8 +98,8 @@ def should_implement_setuptools_command_protocol(install_module=None):
 
 
 @mock.patch('setupext.pip.install')
-def should_default_to_installing_package_requirements(install_module=None):
-    pip_command = install.InstallCommand()
+def should_default_to_installing_package_requirements(install_module):
+    pip_command = install_module.InstallCommand()
     pip_command.run = mock.Mock()
     pip_command.cmd_opts = mock.MagicMock()
     install_module.InstallCommand.return_value = pip_command
