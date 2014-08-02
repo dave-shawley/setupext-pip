@@ -38,14 +38,17 @@ class PipInstall(setuptools.Command):
         self.requirement_file = None
 
     def finalize_options(self):
+        if self.requirement_file is not None:
+            self._pip_args.extend(['-r', self.requirement_file])
+        elif self.distribution.install_requires:
+            self._pip_args.extend(self.distribution.install_requires)
+        else:  # no requirements, nothing to do here
+            return
+
         if self.find_links is not None:
             self._pip_args.extend(['-f', self.find_links])
         if self.index_url is not None:
             self._pip_args.extend(['-i', self.index_url])
-        if self.requirement_file is not None:
-            self._pip_args.extend(['-r', self.requirement_file])
-        else:
-            self._pip_args.extend(self.distribution.install_requires)
         if self.no_use_wheel:
             self._pip_args.append('--no-use-wheel')
         if self.pre:
@@ -55,10 +58,12 @@ class PipInstall(setuptools.Command):
         if install is None:
             raise errors.DistutilsSetupError(
                 'could not find pip.install module')
-
-        cmd = install.InstallCommand()
-        args = cmd.cmd_opts.parser.parse_args(self._pip_args)
-        cmd.run(*args)
+        if self._pip_args:
+            cmd = install.InstallCommand()
+            args = cmd.cmd_opts.parser.parse_args(self._pip_args)
+            cmd.run(*args)
+        else:
+            self.warn('no requirements to install')
 
 
 PipInstall.description = PipInstall.__doc__.splitlines()[0]

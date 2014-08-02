@@ -89,9 +89,9 @@ def should_implement_setuptools_command_protocol(install_module):
     )
 
     pip_command.cmd_opts.parser.parse_args.assert_called_with([
+        '-r', 'requirements.txt',
         '-f', 'http://cheese-shop.local/links',
         '-i', 'http://cheese-shop.local/simple',
-        '-r', 'requirements.txt',
         '--no-use-wheel',
         '--pre',
     ])
@@ -130,6 +130,18 @@ def should_raise_setup_error_when_pip_import_fails(_):
         assert isinstance(exc, errors.DistutilsSetupError)
     else:
         raise AssertionError('should have raised DistutilsSetupError')
+
+
+@mock.patch('setupext.pip.install')
+def should_do_nothing_without_install_requires(install_module):
+    setuptools.setup(
+        name='testing-setup',
+        cmdclass={'requirements': pip.PipInstall},
+        script_name='setup.py',
+        script_args=['requirements'],
+    )
+
+    assert not install_module.InstallCommand.called
 
 
 ########################################################################

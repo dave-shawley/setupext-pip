@@ -5,6 +5,7 @@ Changelog
 
   - Add ``from future import absolute_import`` to make the extension
     safe on older Python versions.
+  - Make it safe to use without a ``setup_requires`` keyword.
 
 * 1.0.3 (30-Jul-2014)
   
