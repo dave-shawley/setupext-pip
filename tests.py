@@ -144,6 +144,28 @@ def should_do_nothing_without_install_requires(install_module):
     assert not install_module.InstallCommand.called
 
 
+@mock.patch('setupext.pip.install')
+def should_install_test_requirements_when_instructed_to(install_module):
+    pip_command = install_module.InstallCommand()
+    pip_command.run = mock.Mock()
+    pip_command.cmd_opts = mock.MagicMock()
+    install_module.InstallCommand.return_value = pip_command
+
+    setuptools.setup(
+        name='testing-setup',
+        cmdclass={'requirements': pip.PipInstall},
+        script_name='setup.py',
+        script_args=[
+            'requirements',
+            '--install-test-requirements',
+        ],
+        tests_require=['tox==1.7.2'],
+    )
+
+    pip_command.cmd_opts.parser.parse_args.assert_called_with(
+        ['tox==1.7.2'])
+
+
 ########################################################################
 # setupext.pip.read_requirements_from_file
 ########################################################################

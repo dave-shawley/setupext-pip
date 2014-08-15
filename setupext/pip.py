@@ -27,24 +27,32 @@ class PipInstall(setuptools.Command):
         ('pre', None,
             'Include pre-release or development versions of dependencies'),
         ('no-use-wheel', None, 'Do not find and prefer wheel archives'),
+        ('install-test-requirements', 't', 'Install test_requires'),
     ]
 
     def initialize_options(self):
         self._pip_args = []
         self.find_links = None
         self.index_url = None
+        self.install_test_requirements = False
         self.no_use_wheel = False
         self.pre = False
         self.requirement_file = None
 
     def finalize_options(self):
+        requirements = []
         if self.requirement_file is not None:
-            self._pip_args.extend(['-r', self.requirement_file])
+            requirements.extend(['-r', self.requirement_file])
         elif self.distribution.install_requires:
-            self._pip_args.extend(self.distribution.install_requires)
-        else:  # no requirements, nothing to do here
+            requirements.extend(self.distribution.install_requires)
+
+        if self.install_test_requirements:
+            requirements.extend(self.distribution.tests_require)
+
+        if not requirements:  # no requirements, nothing to do here
             return
 
+        self._pip_args.extend(requirements)
         if self.find_links is not None:
             self._pip_args.extend(['-f', self.find_links])
         if self.index_url is not None:

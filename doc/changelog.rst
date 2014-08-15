@@ -1,6 +1,10 @@
 Changelog
 ---------
 
+* 1.0.5
+
+  - Add the *--install-test-requirements* command line option.
+
 * 1.0.4 (02-Aug-2014)
 
   - Add ``from future import absolute_import`` to make the extension
@@ -8,7 +12,7 @@ Changelog
   - Make it safe to use without a ``setup_requires`` keyword.
 
 * 1.0.3 (30-Jul-2014)
-  
+
   - Fix ``setup.py test``.  It was hanging forever unless you passed it
     additional parameters.
 
