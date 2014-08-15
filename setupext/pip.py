@@ -12,7 +12,7 @@ except ImportError:
     install = None
 
 
-version_info = (1, 0, 4)
+version_info = (1, 0, 5)
 __version__ = '.'.join(str(c) for c in version_info)
 
 
@@ -28,12 +28,15 @@ class PipInstall(setuptools.Command):
             'Include pre-release or development versions of dependencies'),
         ('no-use-wheel', None, 'Do not find and prefer wheel archives'),
         ('install-test-requirements', 't', 'Install test_requires'),
+        ('install-extra-requirements=', 'e',
+            'Install the requirements for the named "extra"'),
     ]
 
     def initialize_options(self):
         self._pip_args = []
         self.find_links = None
         self.index_url = None
+        self.install_extra_requirements = None
         self.install_test_requirements = False
         self.no_use_wheel = False
         self.pre = False
@@ -48,6 +51,17 @@ class PipInstall(setuptools.Command):
 
         if self.install_test_requirements:
             requirements.extend(self.distribution.tests_require)
+        if (self.install_extra_requirements and
+                self.distribution.extras_require):
+            try:
+                requirements.extend(
+                    self.distribution.extras_require[
+                        self.install_extra_requirements])
+            except KeyError:
+                self.warn('{0} not found in extras_require - {1}'.format(
+                    self.install_extra_requirements,
+                    ', '.join(self.distribution.extras_require.keys())
+                ))
 
         if not requirements:  # no requirements, nothing to do here
             return

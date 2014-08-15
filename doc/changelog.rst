@@ -4,6 +4,7 @@ Changelog
 * 1.0.5
 
   - Add the *--install-test-requirements* command line option.
+  - Add the *--install-extra-requirements* command line option.
 
 * 1.0.4 (02-Aug-2014)
 

@@ -166,6 +166,58 @@ def should_install_test_requirements_when_instructed_to(install_module):
         ['tox==1.7.2'])
 
 
+@mock.patch('setupext.pip.install')
+def should_install_requirements_for_specified_extra(install_module):
+    pip_command = install_module.InstallCommand()
+    pip_command.run = mock.Mock()
+    pip_command.cmd_opts = mock.MagicMock()
+    install_module.InstallCommand.return_value = pip_command
+
+    setuptools.setup(
+        name='testing-setup',
+        cmdclass={'requirements': pip.PipInstall},
+        script_name='setup.py',
+        script_args=[
+            'requirements',
+            '--install-extra-requirements=doc',
+        ],
+        extras_require={'doc': ['sphinx']}
+    )
+
+    pip_command.cmd_opts.parser.parse_args.assert_called_with(['sphinx'])
+
+
+@mock.patch('setupext.pip.install')
+def should_not_install_when_extra_does_not_exist(install_module):
+    setuptools.setup(
+        name='testing-setup',
+        cmdclass={'requirements': pip.PipInstall},
+        script_name='setup.py',
+        script_args=[
+            'requirements',
+            '--install-extra-requirements=doc',
+        ],
+        extras_require={'not doc': []},
+    )
+
+    assert not install_module.InstallCommand.called
+
+
+@mock.patch('setupext.pip.install')
+def should_not_install_when_no_extras_require(install_module):
+    setuptools.setup(
+        name='testing-setup',
+        cmdclass={'requirements': pip.PipInstall},
+        script_name='setup.py',
+        script_args=[
+            'requirements',
+            '--install-extra-requirements=doc',
+        ],
+    )
+
+    assert not install_module.InstallCommand.called
+
+
 ########################################################################
 # setupext.pip.read_requirements_from_file
 ########################################################################
