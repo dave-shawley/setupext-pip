@@ -12,7 +12,7 @@ except ImportError:
     install = None
 
 
-version_info = (1, 0, 4)
+version_info = (1, 0, 5)
 __version__ = '.'.join(str(c) for c in version_info)
 
 
@@ -27,24 +27,46 @@ class PipInstall(setuptools.Command):
         ('pre', None,
             'Include pre-release or development versions of dependencies'),
         ('no-use-wheel', None, 'Do not find and prefer wheel archives'),
+        ('install-test-requirements', 't', 'Install test_requires'),
+        ('install-extra-requirements=', 'e',
+            'Install the requirements for the named "extra"'),
     ]
 
     def initialize_options(self):
         self._pip_args = []
         self.find_links = None
         self.index_url = None
+        self.install_extra_requirements = None
+        self.install_test_requirements = False
         self.no_use_wheel = False
         self.pre = False
         self.requirement_file = None
 
     def finalize_options(self):
+        requirements = []
         if self.requirement_file is not None:
-            self._pip_args.extend(['-r', self.requirement_file])
+            requirements.extend(['-r', self.requirement_file])
         elif self.distribution.install_requires:
-            self._pip_args.extend(self.distribution.install_requires)
-        else:  # no requirements, nothing to do here
+            requirements.extend(self.distribution.install_requires)
+
+        if self.install_test_requirements:
+            requirements.extend(self.distribution.tests_require)
+        if (self.install_extra_requirements and
+                self.distribution.extras_require):
+            try:
+                requirements.extend(
+                    self.distribution.extras_require[
+                        self.install_extra_requirements])
+            except KeyError:
+                self.warn('{0} not found in extras_require - {1}'.format(
+                    self.install_extra_requirements,
+                    ', '.join(self.distribution.extras_require.keys())
+                ))
+
+        if not requirements:  # no requirements, nothing to do here
             return
 
+        self._pip_args.extend(requirements)
         if self.find_links is not None:
             self._pip_args.extend(['-f', self.find_links])
         if self.index_url is not None:

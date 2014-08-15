@@ -37,6 +37,15 @@ that are passed through to the underlying ``pip install`` execution.
    Include pre-release and development versions.  By default, only
    stable versions are installed.
 
+.. option:: --install-test-requirements
+
+   Install dependencies listed in the ``tests_require`` keyword
+   passed to :func:`setuptools.setup`.
+
+.. option:: --install-extra-requirements EXTRA
+
+   Install the ``extras_require`` dependencies associated with *EXTRA*.
+
 Since the *requirements* command uses :command:`pip` to perform the
 installation, you can use any of the `pip configuration files`_.
 
