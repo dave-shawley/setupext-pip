@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+* Next Release
+
+  - `#8`_ Fix sdist packaging and tests -- contributed by @jayvdb
+  - Add Python 3.5-3.8 as supported versions
+  - Remove explicit support for Python 2.6 and 3.4
+
+.. _#8: https://github.com/dave-shawley/setupext-pip/pull/8
+
 * 1.0.5 (15-Aug-2014)
 
   - Add the *--install-test-requirements* command line option.

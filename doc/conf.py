@@ -7,7 +7,7 @@ from setupext import pip
 
 
 project = 'Setupext: Pip'
-copyright = '2014, Dave Shawley'
+copyright = '2014-2020, Dave Shawley'
 version = pip.__version__
 release = pip.__version__
 

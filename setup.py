@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from setuptools.command.test import test as TestCommand
 import codecs
 import setuptools
@@ -48,6 +50,14 @@ setuptools.setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
         'Framework :: Setuptools Plugin',
         'Development Status :: 4 - Beta',
     ],
