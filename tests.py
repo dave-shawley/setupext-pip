@@ -240,6 +240,8 @@ def should_read_complex_requirements_file():
 
     requirements = pip.read_requirements_from_file(name)
 
-    assert requirements[0] == 'Unsafe-Name>1', 'Unsafe name not adjusted'
+    assert (
+        requirements[0] in ['Unsafe-Name>1', 'Unsafe_Name>1']
+    ), 'Unsafe name not adjusted'
     assert requirements[1] == 'requests==1.2.3', 'Simple dependency broken'
     assert len(requirements) == 2

@@ -2,8 +2,10 @@ include HACKING
 include LICENSE
 include .coveragerc
 include *requirements.txt
+include tests.py
 graft doc
 
 global-exclude __pycache__
 global-exclude *.pyc
 global-exclude *.swp
+
