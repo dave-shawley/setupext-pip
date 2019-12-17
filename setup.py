@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from setuptools.command.test import test as TestCommand
 import codecs
 import setuptools
