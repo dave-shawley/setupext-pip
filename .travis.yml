@@ -16,5 +16,6 @@ deploy:
     secure: RvdPEHX8bh1tPqPN6fmFdpgPu8do/QiDCqWbitgW7QPJQUaVS7SSTBVqsx8XWdd2QdKofpDQNWUPGgPDrbrByq/QpaYMsgrce0ZAkbD7wAK8cZsQADQ0ld6CFl9HfstUxrKhC06YdyaB7rLh/j4svW4mplZ5M2Lco5d38xxL11A=
   distributions: "sdist bdist_wheel"
   on:
+    python: 3.7
     all_branches: true
     tags: true
