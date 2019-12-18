@@ -50,5 +50,5 @@ Since the *requirements* command uses :command:`pip` to perform the
 installation, you can use any of the `pip configuration files`_.
 
 .. _pip configuration files:
-   https://pip.pypa.io/en/latest/user_guide.html#configuration
-.. _setuptools: https://pythonhosted.org/setuptools/
+   https://pip.readthedocs.io/en/latest/user_guide.html#configuration
+.. _setuptools: https://setuptools.readthedocs.io/

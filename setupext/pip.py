@@ -12,8 +12,9 @@ except ImportError:
     install = None
 
 
-version_info = (1, 0, 5)
-__version__ = '.'.join(str(c) for c in version_info)
+version_info = (1, 1, 0)
+version = '.'.join(str(c) for c in version_info)
+__version__ = version  # compatibility shim
 
 
 class PipInstall(setuptools.Command):
@@ -106,8 +107,8 @@ def read_requirements_from_file(file_name):
     ``--index-file=...``) are ignored.
 
     .. _pkg_resources:
-       https://pythonhosted.org/setuptools/pkg_resources.html
-       #requirements-parsing
+       https://setuptools.readthedocs.io/en/latest
+       /pkg_resources.html#requirements-parsing
 
     """
     logger = logging.getLogger('read_requirements_from_file')

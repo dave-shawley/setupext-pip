@@ -33,7 +33,7 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name='setupext-pip',
-    version=pip.__version__,
+    version=pip.version,
     author='Dave Shawley',
     author_email='daveshawley@gmail.com',
     url='http://github.com/dave-shawley/setupext-pip',

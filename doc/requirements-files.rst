@@ -91,5 +91,4 @@ It's no where near perfect, but it does work in most cases.
 .. autofunction:: setupext.pip.read_requirements_from_file
 
 
-.. _setuptools documentation:
-   https://pythonhosted.org/setuptools/setuptools.html#developer-s-guide
+.. _setuptools documentation: https://setuptools.readthedocs.io/

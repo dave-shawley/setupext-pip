@@ -48,17 +48,17 @@ Ok... Where?
 +---------------+-------------------------------------------------+
 
 
-.. _setuptools: https://pythonhosted.org/setuptools/
-.. _pip: https://pip.pypa.io/en/latest/
+.. _setuptools: https://setuptools.readthedocs.io/
+.. _pip: https://pip.readthedocs.io/en/latest/
 .. _pip-formatted requirements file:
-   https://pip.pypa.io/en/latest/reference/pip_install.html
+   https://pip.readthedocs.io/en/latest/reference/pip_install.html
    #requirements-file-format
-.. |Version| image:: https://badge.fury.io/py/setupext-pip.svg
-   :target: https://badge.fury.io/
-.. |Downloads| image:: https://pypip.in/d/setupext-pip/badge.svg?
-   :target: https://pypi.python.org/pypi/setupext-pip
-.. |Status| image:: https://travis-ci.org/dave-shawley/setupext-pip.svg
+.. |Version| image:: https://img.shields.io/pypi/v/setupext-pip
+   :target: https://pypi.org/project/setupext-pip
+.. |Downloads| image:: https://img.shields.io/pypi/dm/setupext-pip
+   :target: https://pypi.org/project/setupext-pip
+.. |Status| image:: https://img.shields.io/travis/dave-shawley/setupext-pip
    :target: https://travis-ci.org/dave-shawley/setupext-pip
-.. |License| image:: https://pypip.in/license/setupext-pip/badge.svg?
-   :target: https://setupext-pip.readthedocs.org/
+.. |License| image:: https://img.shields.io/pypi/l/setupext-pip
+   :target: https://setupext-pip.readthedocs.io/
 
