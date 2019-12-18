@@ -1,7 +1,7 @@
 Changelog
 ---------
 
-* Next Release
+* 1.1.0 (18-Dec-2019)
 
   - `#8`_ Fix sdist packaging and tests -- contributed by @jayvdb
   - Add Python 3.5-3.8 as supported versions
